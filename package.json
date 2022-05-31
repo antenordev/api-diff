@@ -1,0 +1,12 @@
+{
+  "name": "api-diff",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Antenor Pires",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1"
+  }
+}
