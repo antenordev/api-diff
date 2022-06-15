@@ -28,26 +28,30 @@ Array.prototype.diff = function(a) {
 /**
  *  SCRIPT DIFF
  */
-let route = "/your-route-compare";
+let route = process.argv.slice(2)[0].toString();
 
 (async () => {
+    // DISPLAY NAME ROUTE
     console.log("Route:", route);
 
     // ORIGIN REQUEST METHOD GET WITH PARAM LIMIT
-    const responseOrigin = await apiOrigin.get(`${route}?_limit=10000`)
+    const responseOrigin = await apiOrigin.get(`/${route}?_limit=1000`)
         .then((response) => response.data)
         .catch((error) => console.log("Exception Origin:", error));
-    console.log("Data Origin:", responseOrigin.length);
+    console.log("Count Origin:", responseOrigin.length);
 
     // TARGET REQUEST METHOD GET WITH PARAM LIMIT
-    const responseTarget = await apiTarget.get(`${route}?_limit=10000`)
+    const responseTarget = await apiTarget.get(`/${route}?_limit=1000`)
         .then((response) => response.data)
         .catch((error) => console.log("Exception Target:", error));
-    console.log("Data Target:", responseTarget.length);
+    console.log("Count Target:", responseTarget.length);
 
     // ARRAY MAP
     const dataOrigin = responseOrigin.map((item) => item);
+    // console.log("Data Target:", dataOrigin);
+
     const dataTarget = responseTarget.map((item) => item);
+    // console.log("Data Target:", dataTarget);
 
     // ARRAY DIFF
     const diff = dataOrigin.diff(dataTarget);
